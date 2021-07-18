@@ -23,10 +23,6 @@ func (middleware *Middleware) Use(instance MiddlewareInstance) {
 func (middleware *Middleware) Handler(reqHandler fasthttp.RequestHandler) fasthttp.RequestHandler {
 	for i := range middleware.list {
 		reqHandler = middleware.list[i](reqHandler)
-
-		if reqHandler == nil {
-			break
-		}
 	}
 
 	return reqHandler
